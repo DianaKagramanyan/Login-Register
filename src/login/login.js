@@ -42,7 +42,10 @@ const Login = () => {
 
             <Typography component="h1" variant="h5"
                         sx={{
-                          fontSize: '36px',
+                          fontSize: '56px',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
                           fontWeight: '600' }}>
               Login To Your Account
             </Typography>
