@@ -7,10 +7,10 @@ import Register from "./register/register";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#FFFFFF'
+      main: '#28B498'
     },
     secondary: {
-      main: '#28B498'
+      main: '#FFFFFF'
     },
   },
 });

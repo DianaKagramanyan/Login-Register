@@ -8,6 +8,7 @@ const ButtonSignUp = () => {
       <Link to="/" style={{textDecoration: 'none'}}>
         <Button variant="contained"
                 style={{
+                  background: 'white',
                   fontSize: '14px', // Font size
                   fontWeight: '500',
                   padding: '12px 36px', // Padding

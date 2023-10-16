@@ -8,13 +8,14 @@ const ButtonSignUp = () => {
       <Link to="/signup" style={{textDecoration: 'none'}}>
         <Button variant="contained"
                 style={{
+                  background: 'white',
                   fontSize: '14px', // Font size
                   fontWeight: '500',
                   padding: '12px 36px', // Padding
                   height: "54px",
                   width: "223px",
                   borderRadius: '50px', // Rounded corners
-                  boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)', // Box shadow
+                  boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)'// Box shadow
                 }}
         >Sign Up</Button>
       </Link>
