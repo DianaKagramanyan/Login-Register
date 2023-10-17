@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import BackgroundCreateAccount from "./BackgroundCreateAccount";
 import {
   Box,
@@ -13,6 +13,11 @@ import {
 } from "@mui/material";
 
 const Register = () => {
+  const [isVerified, setIsVerified] = useState(false);
+
+  const onChange = () => {
+    setIsVerified(!isVerified);
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -112,6 +117,7 @@ const Register = () => {
 
                 <Grid item xs={12}>
                   <FormControlLabel
+                    onChange={onChange}
                     control={<Checkbox sx={{color: '#28B498'}} value="allowExtraEmails" color="primary"/>}
                     // label="I have read the Terms & Conditions "
                   />
@@ -122,7 +128,6 @@ const Register = () => {
 
               <Button variant="contained"
                       style={{
-                        color: 'white',
                         background: '28B498',
                         fontSize: '14px', // Font size
                         fontWeight: '500',
@@ -131,7 +136,10 @@ const Register = () => {
                         width: "223px",
                         borderRadius: '50px', // Rounded corners
                         boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)', // Box shadow
-                        marginTop: '16px'
+                        marginTop: '16px',
+                        color: isVerified ? "white" : "darkgray", // Change color based on verification
+                        backgroundColor: isVerified ? "#28B498" : "lightgray", // Change background color based on verification
+                        cursor: isVerified ? "pointer" : "default",// Change cursor based on verification
                       }}
               >Sign Up</Button>
             </Box>

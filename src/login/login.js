@@ -1,4 +1,3 @@
-import React from 'react';
 import Background from "./Background";
 import {
   Box, Button,
@@ -7,7 +6,6 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-
 
 const Login = () => {
   const handleSubmit = (event) => {
