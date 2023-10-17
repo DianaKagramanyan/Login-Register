@@ -112,9 +112,10 @@ const Register = () => {
 
                 <Grid item xs={12}>
                   <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary"/>}
-                    label="I have read the Terms & Conditions "
+                    control={<Checkbox sx={{color: '#28B498'}} value="allowExtraEmails" color="primary"/>}
+                    // label="I have read the Terms & Conditions "
                   />
+                  I have read the <span className='checkbox'>Terms & Conditions</span>
                 </Grid>
 
 

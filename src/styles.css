@@ -93,3 +93,6 @@ html, body, #root {
     color: white;
     display: flex;
 }
+.checkbox{
+    color: #28B498;
+}
