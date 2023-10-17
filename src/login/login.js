@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Background from "./Background";
 import {
   Box, Button,
@@ -6,15 +7,34 @@ import {
   TextField,
   Typography
 } from "@mui/material";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
-  const handleSubmit = (event) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    try {
+      const response = await axios.post('http://localhost:3000/users/signin', {
+        email,
+        password,
+      });
+      navigate('/account')
+      console.log('Login Successful:', response.data);
+    } catch (error) {
+      console.error('Login Failed:', error);
+    }
   };
 
   const textFieldStyle = {
@@ -22,13 +42,13 @@ const Login = () => {
     borderRadius: '50px',
     marginBottom: '16px',
     width: '500px',
-    height:'48px',
+    height: '48px',
   };
   return (
     <div className='login'>
       <div className='signin'>
-        <Container component="main" maxWidth="xs" >
-          <CssBaseline />
+        <Container component="main" maxWidth="xs">
+          <CssBaseline/>
           <Box
             sx={{
               marginTop: 8,
@@ -44,13 +64,16 @@ const Login = () => {
                           whiteSpace: 'nowrap',
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
-                          fontWeight: '600' }}>
+                          fontWeight: '600'
+                        }}>
               Login To Your Account
             </Typography>
 
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}} className='center'>
+            <Box onSubmit={handleSubmit} component="form" noValidate sx={{mt: 1}} className='center'>
 
               <TextField
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 margin="normal"
                 required
                 fullWidth
@@ -63,6 +86,8 @@ const Login = () => {
               />
 
               <TextField
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 margin="normal"
                 required
                 fullWidth
@@ -71,19 +96,21 @@ const Login = () => {
                 id="password"
                 style={textFieldStyle}
               />
-              <Button variant="contained"
-                      style={{
-                        color:'white',
-                        background: '28B498',
-                        fontSize: '14px', // Font size
-                        fontWeight: '500',
-                        padding: '12px 36px', // Padding
-                        height: "54px",
-                        width: "223px",
-                        borderRadius: '50px', // Rounded corners
-                        boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)', // Box shadow
-                        marginTop: '16px'
-                      }}
+              <Button
+                type="submit"
+                variant="contained"
+                style={{
+                  color: 'white',
+                  background: '28B498',
+                  fontSize: '14px', // Font size
+                  fontWeight: '500',
+                  padding: '12px 36px', // Padding
+                  height: "54px",
+                  width: "223px",
+                  borderRadius: '50px', // Rounded corners
+                  boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)', // Box shadow
+                  marginTop: '16px'
+                }}
               >Sign In</Button>
             </Box>
 

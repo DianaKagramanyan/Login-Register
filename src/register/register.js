@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from "axios";
 import BackgroundCreateAccount from "./BackgroundCreateAccount";
 import {
   Box,
@@ -11,20 +12,34 @@ import {
   TextField,
   Typography
 } from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 const Register = () => {
   const [isVerified, setIsVerified] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate()
 
-  const onChange = () => {
+  const onChangeVerified = () => {
     setIsVerified(!isVerified);
   }
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
+    console.log('Handling form submission'); // Add this line
+    console.log(email, password)
+    axios.post('http://localhost:3000/users/signup', {email, password})
+      .then((res) => {
+        console.log(res)
+        navigate('/account')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   };
 
   const textFieldStyle = {
@@ -41,7 +56,7 @@ const Register = () => {
       </div>
       <div className='signup'>
 
-        <Container component="main" maxWidth="md" >
+        <Container component="main" maxWidth="md">
           <CssBaseline/>
           <Box
             sx={{
@@ -62,9 +77,9 @@ const Register = () => {
               Create Free Account
             </Typography>
 
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}} className='center'>
+            <Box onSubmit={handleSubmit} component="form" noValidate sx={{mt: 3}} className='center'>
 
-              <Grid container spacing={2} >
+              <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
@@ -92,6 +107,10 @@ const Register = () => {
 
                 <Grid item xs={12} sm={6}>
                   <TextField
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value)
+                    }}
                     required
                     fullWidth
                     id="email"
@@ -103,6 +122,10 @@ const Register = () => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                    }}
                     required
                     fullWidth
                     name="password"
@@ -115,18 +138,17 @@ const Register = () => {
                 </Grid>
               </Grid>
 
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    onChange={onChange}
-                    control={<Checkbox sx={{color: '#28B498'}} value="allowExtraEmails" color="primary"/>}
-                    // label="I have read the Terms & Conditions "
-                  />
-                  I have read the <span className='checkbox'>Terms & Conditions</span>
-                </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  onChange={onChangeVerified}
+                  control={<Checkbox sx={{color: '#28B498'}} value="allowExtraEmails" color="primary"/>}
+                />
+                I have read the <span className='checkbox'>Terms & Conditions</span>
+              </Grid>
 
 
-
-              <Button variant="contained"
+              <Button type="submit"
+                      variant="contained"
                       style={{
                         background: '28B498',
                         fontSize: '14px', // Font size
