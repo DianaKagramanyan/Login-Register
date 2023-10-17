@@ -27,6 +27,7 @@ const Register = () => {
     borderRadius: '50px', // Set the border radius
     width: '24.875rem',
     height: '48px',
+    marginBottom: '16px',
   };
   return (
     <div className='register'>
@@ -55,8 +56,10 @@ const Register = () => {
                         }}>
               Create Free Account
             </Typography>
+
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}} className='center'>
-              <Grid container spacing={2}  >
+
+              <Grid container spacing={2} >
                 <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="given-name"
@@ -105,6 +108,7 @@ const Register = () => {
                     style={textFieldStyle}
                   />
                 </Grid>
+              </Grid>
 
                 <Grid item xs={12}>
                   <FormControlLabel
@@ -113,7 +117,7 @@ const Register = () => {
                   />
                 </Grid>
 
-              </Grid>
+
 
               <Button variant="contained"
                       style={{
