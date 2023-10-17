@@ -137,8 +137,8 @@ const Register = () => {
                         borderRadius: '50px', // Rounded corners
                         boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)', // Box shadow
                         marginTop: '16px',
-                        color: isVerified ? "white" : "darkgray", // Change color based on verification
-                        backgroundColor: isVerified ? "#28B498" : "lightgray", // Change background color based on verification
+                        color: 'white',
+                        backgroundColor: isVerified ? "#28B498" : "rgba(40,180,152,0.4)", // Change background color based on verification
                         cursor: isVerified ? "pointer" : "default",// Change cursor based on verification
                       }}
               >Sign Up</Button>
